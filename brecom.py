@@ -185,8 +185,8 @@ books.head(3)
 
 #Defining a function that will recommend top 5 books
 def recommend(user_id):
-    books = pd.read_csv(r'C:\Users\nisar\Downloads\ADMProj\books_cleaned.csv')
-    ratings = pd.read_csv(r'C:\Users\nisar\Downloads\ADMProj\ratings.csv')
+    books = pd.read_csv(r'books_cleaned.csv')
+    ratings = pd.read_csv(r'ratings.csv')
   
     book_id = list(ratings.book_id.unique()) #grabbing all the unique books
   
