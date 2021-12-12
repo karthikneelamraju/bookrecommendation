@@ -212,7 +212,7 @@ ratings.user_id.unique().max()
 
 
 #Enter a number between 1 and 53424
-st.table(recommend(name))
+recommend(789)
 
 
 # In[ ]:
