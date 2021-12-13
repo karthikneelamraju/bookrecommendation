@@ -3,7 +3,6 @@
 
 # In[19]:
 
-import streamlit as st
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -14,15 +13,12 @@ import warnings
 import joblib
 warnings.filterwarnings('ignore')
 
-st.title('Recommended for you!')
-
 # In[3]:
 
 
 books = pd.read_csv(r'books.csv')
 
 ratings = pd.read_csv(r'ratings.csv')
-name = st.sidebar.text_input(''' Enter your user name''')
 
 
 # # Data Preposessing
@@ -181,41 +177,43 @@ books.head(3)
 
 
 # In[29]:
+import pickle
+with open('piclfile.pkl', 'wb') as file:
+pickle.dump(model, file)
 
-
-#Defining a function that will recommend top 5 books
-def recommend(user_id):
-    books = pd.read_csv(r'books_cleaned.csv')
-    ratings = pd.read_csv(r'ratings.csv')
+# #Defining a function that will recommend top 5 books
+# def recommend(user_id):
+#     books = pd.read_csv(r'books_cleaned.csv')
+#     ratings = pd.read_csv(r'ratings.csv')
   
-    book_id = list(ratings.book_id.unique()) #grabbing all the unique books
+#     book_id = list(ratings.book_id.unique()) #grabbing all the unique books
   
-    book_arr = np.array(book_id) #geting all book IDs and storing them in the form of an array
-    user_arr = np.array([user_id for i in range(len(book_id))])
-    prediction = model.predict([book_arr, user_arr])
+#     book_arr = np.array(book_id) #geting all book IDs and storing them in the form of an array
+#     user_arr = np.array([user_id for i in range(len(book_id))])
+#     prediction = model.predict([book_arr, user_arr])
   
-    prediction = prediction.reshape(-1) #reshape to single dimension
-    prediction_ids = np.argsort(-prediction)[0:5]
+#     prediction = prediction.reshape(-1) #reshape to single dimension
+#     prediction_ids = np.argsort(-prediction)[0:5]
 
-    recommended_books = pd.DataFrame(books.iloc[prediction_ids], columns = ['book_id', 'isbn', 'authors', 'title', 'average_rating' ])
-    print('Top 5 recommended books for you: \n')
-    return recommended_books
-
-
-# In[1]:
+#     recommended_books = pd.DataFrame(books.iloc[prediction_ids], columns = ['book_id', 'isbn', 'authors', 'title', 'average_rating' ])
+#     print('Top 5 recommended books for you: \n')
+#     return recommended_books
 
 
-ratings.user_id.unique().max()
+# # In[1]:
 
 
-# In[31]:
+# ratings.user_id.unique().max()
 
 
-#Enter a number between 1 and 53424
-recommend(789)
+# # In[31]:
 
 
-# In[ ]:
+# #Enter a number between 1 and 53424
+# recommend(789)
+
+
+# # In[ ]:
 
 
 
